@@ -1,0 +1,36 @@
+.main-header{
+    padding-bottom: 40px;
+}
+.main-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(155, 36, 36);
+  }
+  
+.item1,.item{
+    float: left;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+  }
+  
+.item a ,.item1 a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+.item a:hover,.item1 a:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+
+
+.item1{
+    font-weight: bolder;
+}
+  

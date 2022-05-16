@@ -15,6 +15,7 @@ const adminRouter = require('./routes/admin');
 const errorRouter = require('./routes/error');
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(adminRouter.router);
 

@@ -4,16 +4,17 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
+        title Home 
+        link(rel="stylesheet", href="/css/index.css")
     body 
         header.main-header 
             nav.main-nav 
                 ul.main-list    
                     li.item1 
-                        a(href="/") Home
-                    li.item2 
+                        a(href="/") Bloodpath 
+                    li.item 
                         a(href="/login") Login
-                    li.item3 
+                    li.item 
                         a(href="/register") Register       
         form(action="/searchpincode" ,method="POST")
             label(for="pincode") Search Pincode: 
@@ -21,10 +22,14 @@ html(lang="en")
 
             button(type="submit") Submit 
 
-        div 
-            table 
-                caption Available Pincodes 
-                    each pin in pins    
+        div
+            if pins.length > 0
+                img(src="tn-map.gif", alt="TN-Pincodes")
+                table 
+                    caption Available Donors at:
+                        each pin in pins    
 
-                            tr 
-                                td #{pin} 
+                                tr 
+                                    td #{pin} 
+            else    
+                p No available donors at the moment
