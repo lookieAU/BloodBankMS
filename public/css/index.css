@@ -1,5 +1,8 @@
+body{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 .main-header{
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
 }
 .main-list {
     list-style-type: none;
@@ -11,7 +14,7 @@
   
 .item1,.item{
     float: left;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
 
   }
   
@@ -28,9 +31,45 @@
     color: black;
 }
 
+.pincaption,.pinresult{
+  display: flex;
+  justify-content: center;
+  color: whitesmoke;
+}
 
-
-.item1{
+.item1,.pincaption{
     font-weight: bolder;
 }
+
+main{
+  padding-top: 40px;
+  background-image: url('../backgroundmain.gif');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+.pinform, .pintable{
+  display: flex;
+  justify-content: center;
+}
+.pinlabel{
+  color: whitesmoke;
+}
+
+.btnpin:hover{
+  background-color: rgb(155, 36, 36);
+  color: whitesmoke;
+}
   
+/* .rowpin{
+  border: 1px solid white;
+  border-radius: 1px;
+} */
+
+td {
+  border : 1px solid white;
+}
+
+

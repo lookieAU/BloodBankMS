@@ -15,21 +15,27 @@ html(lang="en")
                     li.item 
                         a(href="/login") Login
                     li.item 
-                        a(href="/register") Register       
-        form(action="/searchpincode" ,method="POST")
-            label(for="pincode") Search Pincode: 
-            input(type="text" ,name="pincode") 
+                        a(href="/register") Register  
+        main.main-content
+            p.pincaption Enter your Pincode to search for nearby Donors
+            div.pinform
+                 
+                form(action="/searchpincode" ,method="POST")
+                    label(for="pincode").pinlabel Search: 
+                    input(type="text" ,name="pincode", placeholder="Pincode") 
 
-            button(type="submit") Submit 
+                    button.btnpin(type="submit") Submit 
 
-        div
-            if pins.length > 0
-                img(src="tn-map.gif", alt="TN-Pincodes")
-                table 
-                    caption Available Donors at:
-                        each pin in pins    
+            div
+                if pins.length > 0
+                    div(style="display:flex; justify-content:center; padding: 15px")
+                        img.pinmap(style = "border:2px solid white; border-radius:5px; height: 300px; width:300px", src="tn-map.gif", alt="TN-Pincodes")
+                    div.pintable
+                        table(style = "color: white") 
+                            caption Available:
+                                each pin in pins    
 
-                                tr 
-                                    td #{pin} 
-            else    
-                p No available donors at the moment
+                                        tr.rowpin 
+                                            td #{pin} 
+                else    
+                    p No available donors at the moment

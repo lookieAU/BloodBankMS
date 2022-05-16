@@ -14,4 +14,4 @@ router.get('/',(req,res,next) => {
     // res.status(200).send('Hey the response is coming');
 });
 
-module.exports = router;
+module.exports = router; 
