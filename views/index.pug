@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+        header.main-header 
+            nav.main-nav 
+                ul.main-list    
+                    li.item1 
+                        a(href="/") Home
+                    li.item2 
+                        a(href="/login") Login
+                    li.item3 
+                        a(href="/register") Register       
+        form(action="/searchpincode" ,method="POST")
+            label(for="pincode") Search Pincode: 
+            input(type="text" ,name="pincode") 
+
+            button(type="submit") Submit 
+
+        div 
+            table 
+                caption Available Pincodes 
+                    each pin in pins    
+
+                            tr 
+                                td #{pin} 
