@@ -16,7 +16,7 @@ html(lang="en")
                         a(href="/login") Login
                     li.item 
                         a(href="/register") Register  
-        main.main-content
+        div.main-content
             p.pincaption Enter your Pincode to search for nearby Donors
             div.pinform
                  
@@ -28,14 +28,28 @@ html(lang="en")
 
             div
                 if pins.length > 0
-                    div(style="display:flex; justify-content:center; padding: 15px")
-                        img.pinmap(style = "border:2px solid white; border-radius:5px; height: 300px; width:300px", src="tn-map.gif", alt="TN-Pincodes")
+                    
+                    div.hgInner
+                        img.pinmap(style = "border:1px solid white; border-radius:5px; height: 500px; width:700px", src="tn-map.gif", alt="TN-Pincodes")
+                    div(style="display:flex; justify-content:center; padding: 5px")
+                        p(style = "color:white; font-weight: bolder") Available Donors currently at Pincodes:
                     div.pintable
-                        table(style = "color: white") 
-                            caption Available:
-                                each pin in pins    
-
-                                        tr.rowpin 
-                                            td #{pin} 
+                        - var count = 0;
+                        p
+                            each pin in pins 
+                                span.pinrow #{pin}
+                                - count = count +1
+                                if count == 8
+                                    br 
+                                    - count = 0
                 else    
-                    p No available donors at the moment
+                    p(style="margin-block-end: 0em; color:whitesmoke; display:flex; font-weight:bolder; justify-content: center") No available donors at the moment
+
+                    .quote
+                        p.quote-content 
+                            em "A drop of blood can save a life!
+                        p.quote-content  
+                            em Don't waste it and donate blood."
+        
+        footer.main-footer 
+            p EIE 6th Sem 

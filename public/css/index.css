@@ -1,5 +1,7 @@
 body{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  width: auto;
+  height: auto;
 }
 .main-header{
     /* padding-bottom: 40px; */
@@ -24,9 +26,10 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: background-color 1s, color 1s;
   }
 
-.item a:hover,.item1 a:hover{
+.item a:hover{
     background-color: whitesmoke;
     color: black;
 }
@@ -41,21 +44,32 @@ body{
     font-weight: bolder;
 }
 
-main{
+.main-content{
   padding-top: 40px;
   background-image: url('../backgroundmain.gif');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin-bottom: 0px;
+  height: 830px;
 
 }
 .pinform, .pintable{
   display: flex;
   justify-content: center;
+  
 }
+/* .pintable{
+  width: auto;
+  height: auto;
+} */
 .pinlabel{
   color: whitesmoke;
+}
+
+.btnpin{
+  transition: background-color 1s,color 1s;
 }
 
 .btnpin:hover{
@@ -70,6 +84,69 @@ main{
 
 td {
   border : 1px solid white;
+}
+
+.pinrow{
+  color: white;
+  border: 0.5px solid white;
+  padding: 2px;
+  margin: 2px;
+  font-weight: bolder;
+}
+
+.hgInner {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  position: relative;
+  float: center;
+  /* height: 100%;
+  width: 955px; */
+  overflow: hidden;
+  -webkit-animation: reveal 4s ease;
+  -webkit-animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes reveal {
+  0%   {width: 0px;}
+  100% { width: 100%;}
+}
+@keyframes reveal {
+  0%   {width: 0px;}
+  100% { width: 100%;}
+}
+
+.main-footer{
+  background-color: rgb(155, 36, 36);
+  color: whitesmoke;
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
+}
+
+.main-footer p{
+  /* align-content: center; */
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.quote{
+  margin: 250px 100px 0px 100px;
+  border: 3px solid whitesmoke;
+  border-radius: 10px;
+  padding: 0;
+  
+}
+
+.quote-content{
+  color: whitesmoke;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size:xx-large;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
 }
 
 
