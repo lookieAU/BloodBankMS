@@ -1,0 +1,83 @@
+doctype html
+//- script
+//-     import "@fontsource/dm-sans";
+html(lang = "en")
+    head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport' ,content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href="/css/register.css")
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="stylesheet", href="/css/grid-register.css")
+    title Register
+    body
+        header
+            .top-header 
+                .top-header-one
+                    p Create new Account 
+                .top-header-two 
+                    p Already Registered? 
+                        a(href='/login') Login
+        main  
+            form(action='/adduser', method='POST')
+                p(class="col1")
+                    label(for='fname') FIRST NAME
+                    br
+                    input(type='text', name='fname')
+                p(class="col1") 
+                    label(for='idtype') ID TYPE
+                    br 
+                    input(list="idtype", name="idtype")
+                    datalist(id="idtype")
+                            option(value="Aadhar") 
+                            option(value="Passport") 
+                            option(value="PAN") 
+                            option(value="Voter ID") 
+                p(class="col1") 
+                    label(for='resident') RESIDENTIAL ADDRESS
+                    br
+                    input(type='text' ,name='resident')
+                p(class="col1") 
+                    label(for='pincode') PINCODE
+                    br
+                    input(type='text' ,name='pincode')
+                p(class="col1") 
+                    label(for='phone') PHONE
+                    br
+                    input(type='text' ,name='phone')
+                p(class="col2 em") 
+                    label(for='email') EMAIL
+                    br
+                    input(type='text' ,name='email')
+                p(class="col2 pass")
+                    label(for='Password') PASSWORD
+                    br
+                    input(type='password' ,name='Password')
+                p(class="col2 signup")
+                    button(type='submit') sign up
+                
+                p(class="col3 lname") 
+                    label(for='lname') LAST NAME
+                    br
+                    input(type='text' ,name='lname')
+                p(class="col3 idno") 
+                    label(for='ID') ID NUMBER
+                    br
+                    input(type='text' ,name='ID')
+                
+                p(class="col3 city") 
+                    label(for='city') CITY
+                    br
+                    input(type='text' ,name='city')
+                p(class="col3 dob")   
+                    label(for='dob') DATE OF BIRTH
+                    br 
+                    input(type='date', name='dob')
+                p(class="col3 will") 
+                    label(for='willing') WILLING TO DONATE(Yes/No)
+                    br
+                    input(type='text' ,name='willing')
+                
+                
+                
+                

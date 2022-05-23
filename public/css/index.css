@@ -7,12 +7,13 @@ body{
     padding-bottom: 40px;
 } */
 .main-list {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif; */
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(155, 36, 36);
+    background-image: linear-gradient(120deg, #ff5f5a 25%, #ff0065 100%);
+    /* background-blend-mode: lighten; */
   }
   
 .item1, .item{
@@ -66,7 +67,7 @@ body{
   border-radius: 5px;
 }
 .top-part-two{
-  background-color: rgb(155, 36, 36);
+  background-image: linear-gradient(120deg, #ff0065 0%, #ff0065 100%);
   padding: 0px 30px 30px 30px;
 }
 .top-part-one-submit{
@@ -74,26 +75,26 @@ body{
   margin-bottom: 20px;
 }
 .top-part-one-submit a{
-  background-color: rgb(155, 36, 36);
-  padding: 10px;
-  color: white;
+  background-image: linear-gradient(120deg, #ff0065 25%, #ff0065 100%);
+  padding: 10px 20px 10px 20px;
+  color: whitesmoke;
   /* margin-top: 60px; */
-  border-bottom-right-radius: 10px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.5s, color 0.5s;
+  transition: background-image 0.5s, color 0.5s;
 
 }
 
 .top-part-one-submit a:hover{
-  background-color: whitesmoke;
-  color: rgb(155, 36, 36);
+  background-image: linear-gradient(120deg, whitesmoke 0%, whitesmoke 100%);
+  color:#ff0065;
 }
 
 .search-div{
-  background-color: rgb(155, 36, 36);
+  background-image: linear-gradient(120deg, #ff5f5a 25%, #ff0065 100%);
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 .form-search{
   display: flex;
@@ -108,8 +109,9 @@ body{
 }
 
 .btnpin:hover{
-  background-color: rgb(155, 36, 36);
+  background-image: linear-gradient(120deg, #ff0065 25%, #ff0065 100%);
   color: whitesmoke;
+  border:none;
 }
 .pintable,.form-result-success{
   width: auto;
@@ -146,7 +148,7 @@ td {
 
 .btnpin{
   height: 34px;
-  border-bottom-right-radius: 10px;
+  border-radius: 8px;
   background-color: whitesmoke;
   font-weight: bold;
 }
@@ -169,7 +171,7 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin: 20px;
 }
 .demo1-img, .demo2-img, .demo3-img, .demo4-img{
@@ -316,3 +318,17 @@ td {
 } */
 
 
+.main-footer p{
+  align-content: center;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+.main-footer{
+  background-image: linear-gradient(120deg, #ff5f5a 25%, #ff0065 100%);
+  color: whitesmoke;
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
+}

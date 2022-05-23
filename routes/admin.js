@@ -7,17 +7,20 @@ const {nanoid} = require('nanoid');
 router.use(express.json());
 const con = require('../util/db');
 const { CONNREFUSED } = require('dns');
+const adminRouter = require('./admin');
 
 var pincodes = [];
+var fname;
 
 router.get('/register',(req,res,next) => {
     console.log('Registration Page');
-    res.sendFile(path.join(rootDir, 'views', 'register.html'));
+    res.render(path.join(rootDir, 'views', 'register.pug'));
 });
 
 router.get('/login',(req,res,next) => {
     console.log('Login Page');
-    res.json({message : "Connected from Node"});
+    const fname = adminRouter.fname;
+    res.render(('login'), {name: "Incorrect"});
     // res.sendFile(path.join(rootDir, 'views', 'login.html'));
 });
 
@@ -59,27 +62,44 @@ router.post('/searchpincode', (req,res,next) => {
 
 router.post('/adduser',(req,res,next) => {
     console.log(req.body);
-    var newid = nanoid(10);
+    var userid = nanoid(10);
+    var donorid = nanoid(10);
+    var recipientid = nanoid(10);
 
     var fname = req.body.fname;
     var lname = req.body.lname;
     var email = req.body.email;
     var resident = req.body.resident;
     var city = req.body.city;
-    var state = req.body.state;
+    var state = 'Tamil Nadu';
     var pincode = req.body.pincode;
     var id_number = req.body.ID;
     var phone = req.body.phone;
     var will = req.body.willing;
     var passkey = req.body.Password;
+    var dob = req.body.dob;
 
     var sql = "INSERT INTO registered_user VALUES ?";
-    var values =[[newid,fname,lname,email,resident,city,state,pincode,phone,id_number,will,passkey]];
+    var values =[[userid,fname,lname,email,resident,city,state,pincode,phone,id_number,will,passkey]];
+
+    if(will == 'Yes' || will == "yes" || will == "YES" ){
+        var sql_additional = "INSERT INTO donor VALUES ?";
+        var values_additional =[[donorid, userid, dob, 'Yes']];
+    }
+    else{
+        var sql_additional = "INSERT INTO recipient VALUES ?";
+        var values_additional =[[recipientid, userid]];
+    }
 
     
     con.query(sql,[values],(err) => {
         if(err) throw err;
-        console.log("Values Inserted");
+        console.log("Values Inserted in Registered User");
+
+        con.query(sql_additional,[values_additional],(err) => {
+            if(err) throw err;
+            console.log("values inserted in Donor/Recipient")
+        });
     });
 
     res.redirect('/');
@@ -96,7 +116,11 @@ router.post('/loginuser', (req,res,next) => {
         let fname = newResult.map(item => item.fname);
         console.log(newResult);
         res.send(`<h2>Welcome ${fname}</h2>`);
+
+        exports.fname = fname;
     });
+
+    res.redirect('/login');
 
     
 
@@ -105,3 +129,5 @@ router.post('/loginuser', (req,res,next) => {
 exports.router = router;
 
 exports.pincodes = pincodes;
+
+exports.fname = fname;
