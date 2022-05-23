@@ -1,0 +1,38 @@
+main form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+.col1{
+    grid-column: 1/2;
+}
+.col2{
+    grid-column: 2/3;
+}
+.col3{
+    grid-column: 3/4;
+}
+.em{
+    grid-row: 3/4;
+}
+.pass{
+    grid-row: 4/5;
+}
+.signup{
+    grid-row: 5/6;
+}
+.lname{
+    grid-row: 1/2;
+}
+.idno{
+    grid-row: 2/3;
+}
+.city{
+    grid-row: 3/4;
+}
+.dob{
+    grid-row: 4/5;
+}
+.will{
+    grid-row: 5/6;
+}

@@ -1,0 +1,142 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Home 
+        link(rel="stylesheet", href="/css/index.css")
+    body 
+        header.main-header 
+            nav.main-nav 
+                ul.main-list    
+                    li.item1 
+                        a(href="/") Bloodpath
+                            
+                    li.item 
+                        a(href="/login") Login
+                    li.item 
+                        a(href="/register") Register  
+                    li.item     
+                        a(href="/contact") Contact Us
+        main
+            .main-content 
+                .top-part-one 
+                    .top-part-one-heading 
+                        p
+                            h2 
+                                em Give blood & Keep the world beating!
+                    .top-part-one-content 
+                        p 
+                            span
+                                em To ensure that everyone who needs safe blood has access to it, all countries need voluntary, unpaid donors who give blood regularly. Throughout the COVID-19 pandemic, despite limited mobility and other challenges, blood donors in many countries have continued to donate blood and plasma to patients who need transfusion.  This extraordinary effort during a time of unprecedented crisis highlights the crucial role of well-organized, committed voluntary, non-remunerated blood donors in ensuring a safe and sufficient blood supply during normal and emergency times.
+                    .top-part-one-submit 
+                        a(href="/register") Donate Now!
+
+                .top-part-two 
+                    .top-part-two-img 
+                        img(src="/bp-logo.jpg", alt="bp-logo.jpg")
+            .search-div 
+                .form-search    
+                    form(method="POST", action="/searchpincode")
+                        input(list="blood-group", name="blood-group", placeholder="Blood Group")
+                        datalist(id="blood-group")
+                            option(value="A") 
+                            option(value="AB") 
+                            option(value="B") 
+                            option(value="O") 
+                        input(type="text", name="pincode", placeholder = "Pincode")
+                        button.btnpin(type="submit") Search 
+                .form-result 
+                    if pins.length>0  
+                        div(style="display:flex; justify-content:center; padding: 5px")
+                            p(style = "color:white; font-weight: bolder") Available Donors currently at Pincodes:
+                        .pintable
+                            - var count = 0;
+                            p
+                                each pin in pins 
+                                    span.pinrow #{pin}
+                                    - count = count +1
+                                    if count == 8
+                                        br 
+                                        - count = 0
+                        .form-result-success 
+                            p Donors are available, please proceed for registration.
+
+                    else    
+                        p(style="margin-block-end: 0em; color:whitesmoke; display:flex; justify-content: center") No available donors at the moment 
+            .demo-div-top-text(style="display:flex; justify-content: center") 
+                p(style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-weight: bolder; font-size: larger; border: 1px solid black; padding: 5px; border-radius: 5px") STEPS OVERVIEW
+                
+            .demo-div 
+                .demo1 
+                    .demo1-img
+                        .demo-img 
+                            img(src="/register.png", alt="register")
+                    .demo1-text 
+                        p User registers/logins on the website
+                .demox-img
+                        .demo-img 
+                            img(src="/right-arrow.png", alt="register")
+                .demo2 
+                    .demo2-img
+                        .demo-img 
+                            img(src="/received-form.jpg", alt="form")
+                    .demo2-text 
+                        p Donor recieves requests on their profile
+                .demox-img
+                        .demo-img 
+                            img(src="/right-arrow.png", alt="register")
+                .demo3 
+                    .demo3-img
+                        .demo-img 
+                            img(src="/donate-hospital.jpg", alt="hospital")
+                    .demo3-text 
+                        p Blood donation at the hospital and approval 
+                .demox-img
+                        .demo-img 
+                            img(src="/right-arrow.png", alt="register")
+                .demo4 
+                    .demo4-img
+                        .demo-img 
+                            img(src="/feedback.jpg", alt="feedback")
+                    .demo4-text 
+                        p Feedback recieved on the portal 
+                     
+        //- div.main-content
+        //-     p.pincaption Enter your Pincode to search for nearby Donors
+        //-     div.pinform
+                 
+        //-         form(action="/searchpincode" ,method="POST")
+        //-             label(for="pincode").pinlabel Search: 
+        //-             input(type="text" ,name="pincode", placeholder="Pincode") 
+
+        //-             button.btnpin(type="submit") Submit 
+
+        //-     div
+        //-         if pins.length > 0
+                    
+        //-             div.hgInner
+        //-                 img.pinmap(style = "border:1px solid white; border-radius:5px; height: 500px; width:700px", src="tn-map.gif", alt="TN-Pincodes")
+        //-             div(style="display:flex; justify-content:center; padding: 5px")
+        //-                 p(style = "color:white; font-weight: bolder") Available Donors currently at Pincodes:
+        //-             div.pintable
+        //-                 - var count = 0;
+        //-                 p
+        //-                     each pin in pins 
+        //-                         span.pinrow #{pin}
+        //-                         - count = count +1
+        //-                         if count == 8
+        //-                             br 
+        //-                             - count = 0
+        //-         else    
+        //-             p(style="margin-block-end: 0em; color:whitesmoke; display:flex; font-weight:bolder; justify-content: center") No available donors at the moment
+
+        //-             .quote
+        //-                 p.quote-content 
+        //-                     em "A drop of blood can save a life!
+        //-                 p.quote-content  
+        //-                     em Don't waste it and donate blood."
+        
+        footer.main-footer 
+            p 6th Sem DBMS Batch 6
