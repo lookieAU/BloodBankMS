@@ -16,14 +16,15 @@ html(lang = "en")
                     p Login 
                 .top-header-two 
                     p Sign in to continue
+                        a(href="/",style="color: white")  or Return to home 
         main  
             .normal-view
                 form(action='/loginuser', method='POST')
 
                     div(class="email") 
-                        label(for='email') EMAIL ID
+                        label(for='Username') EMAIL ID
                         br
-                        input(type='text' ,name='email')
+                        input(type='text' ,name='Username')
                     div(class="pass")
                         label(for='Password') PASSWORD
                         br
@@ -32,9 +33,9 @@ html(lang = "en")
                         button(type='submit') login
 
         .wrong-password
-            if name == 'Incorrect'
+            if userid == 'NULL'
  
                 p(style="margin-bottom: 0px") * Your Email ID or Password is Incorrect
-                
-                p(style="margin-top: 0px") TRY AGAIN! 
+                                              
+                p(style="margin-top: 0px") TRY AGAIN!
 

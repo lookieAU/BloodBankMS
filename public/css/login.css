@@ -71,6 +71,7 @@ main form div label{
     border: none;
     margin-top: 10px;
     font-size: 15px;
+    cursor: pointer;
 }
 .wrong-password{
     display: flex;
@@ -79,5 +80,8 @@ main form div label{
     align-items: center;
     color: #ff0065;
     font-weight: 600;
+}
+body{
+    margin: 0px;
 }
 

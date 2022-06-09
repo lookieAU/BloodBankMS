@@ -1,0 +1,101 @@
+doctype html 
+html(lang = "en")
+    head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport' ,content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href="/css/request.css")
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="https://code.iconify.design/2/2.2.1/iconify.min.js") 
+    script(defer src="/request.js") 
+    title Request Form
+    body
+        main.main-content 
+            .main-div 
+                .logo-div 
+                    img(src="/bp-logo.jpg", alt="Bloodpath.jpg")
+                .form-div
+                    .heading 
+                        p.form-heading Request Form
+                    //- .border-line 
+                    //-     p heyyyy
+                            
+                    form(method="POST", action="/request-form")
+                        
+                        .item-blood-info 
+                            .ibi-text 
+                                p Blood Information
+                                    if bloodInfoStatus == "Submitted"
+                                        span(style="font-size: 20px;font-weight: bolder;color: green;") 
+                                            svg.bi.bi-check(xmlns='http://www.w3.org/2000/svg', width='16', height='16', fill='currentColor', viewBox='0 0 16 16')
+                                                path(d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z') 
+                            .ibi-button(style="color:red") 
+                                svg.bi.bi-droplet(xmlns='http://www.w3.org/2000/svg', width='16', height='16', fill='currentColor', viewBox='0 0 16 16')
+                                    path(fill-rule='evenodd', d='M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z')
+                                    path(fill-rule='evenodd', d='M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z')
+                            .ibi-click 
+                                p
+                                    if bloodInfoStatus == "Not submitted" 
+                                        button(type="button",class="bloodInfoPop") click here 
+                        p.request-date 
+                            label(for="request-date") Request Date 
+                            br
+                            input(type="date",name="requestdate",id="request-date",placeholder="DD/MM/YYYY",required)
+                        p.proof-of-request 
+                            label(for="proof-of-request") Proof of Request
+                            br
+                            input(type="text",name="proof-of-request",id="proof-of-request",required)
+                        div.submit-request 
+                            button(type="submit",onclick = "functionSubmit()") SUBMIT
+                        .go-back(style="display: flex;align-items: center;justify-content: center") 
+                            a(href="/profile",style="text-decoration: none") Go back to Profile?     
+                .popup-outer 
+                    .popup-form
+                        
+                        form(action="/blood-info",method="POST")
+                            p.caption(style="padding-left:10px;margin-bottom:0px")
+                                span(class="iconify" ,data-icon="fontisto:blood-drop", style = "color: rgb(180, 24, 24);margin-left:0px;padding-left:0px;font-size: 70px;padding-right: 400px")
+                                span(style="font-size:50px;font-weight: bold")
+                                    em Blood Information 
+                            p.radio-select
+                                
+                                input(type="radio",id="blood",name="bloodPlateletsBlood",style="height:25px;width:25px;")
+                                label(for="blood",style="padding-right: 400px") BLOOD
+                                
+                                input(type="radio",id="platelets",name="bloodPlateletsPlatelets",style="height:25px;width:25px;")
+                                label(for="platelets") PLATELETS 
+                            p.item
+                                label(for="type-of-blood") Type of Blood 
+                                br
+                                input(list="blood-group",id="type-of-blood",name="typeOfBlood",required)
+                                datalist(id="blood-group")
+                                    option(value="A")
+                                    option(value="AB")
+                                    option(value="O")
+                                    option(value="B")   
+                            p.item
+                                label(for="hospital-name") Hospital Name
+                                br
+                                input(type="text",id="hospital-name",name="hospitalName",required)
+                            p.item
+                                label(for="hospital-contact") Hospital Contact
+                                br
+                                input(type="text",id="hospital-contact",name="hospitalContact",required)
+                            p.item
+                                label(for="pincode-request") Pincode
+                                br
+                                input(type="text",id="pincode-request",name="pincodeRequest",required)
+                            p.confirm
+                                button(type="submit") 
+                                    em CONFIRM
+
+    script.
+        function functionSubmit(){
+            alert("You have successfully submitted the request form");
+        }
+
+                    
+                              
+                    
+
+                    
