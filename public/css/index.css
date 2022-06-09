@@ -1,7 +1,6 @@
-body{
+html,body{
   
-  width: auto;
-  height: auto;
+  margin: 0px;
 }
 /* .main-header{
     padding-bottom: 40px;
@@ -12,15 +11,16 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+    /* background-color: whitesmoke; */
     background-image: linear-gradient(120deg, #ff5f5a 25%, #ff0065 100%);
     /* background-blend-mode: lighten; */
   }
+.item1,.item{
+  float: left;
+  padding-left: 30px;
+}
   
-.item1, .item{
-    float:left;
-    /* padding-left: 30px; */
 
-  }
 
   
 .item a ,.item1 a{
@@ -30,6 +30,8 @@ body{
     padding: 14px 16px;
     text-decoration: none;
     transition: background-color 0.5s, color 0.5s;
+    /* padding: 10px 20px 10px 20px; */
+    /* font-weight: 30px; */
   }
 
 .item a:hover{
@@ -69,6 +71,7 @@ body{
 .top-part-two{
   background-image: linear-gradient(120deg, #ff0065 0%, #ff0065 100%);
   padding: 0px 30px 30px 30px;
+  /* border-top-left-radius: 30px; */
 }
 .top-part-one-submit{
   margin-top: 20px;
@@ -331,4 +334,13 @@ td {
   font-weight: bolder;
   margin: 0;
   padding: 0;
+  /* width: 1860px; */
+}
+.main-footer img{
+  background-image: linear-gradient(120deg, #ff5f5a 25%, #ff0065 100%);
+  color: whitesmoke;
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
+  width: 1855.5px;
 }

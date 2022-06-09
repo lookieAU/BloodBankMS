@@ -1,0 +1,146 @@
+body{
+    font-family: 'DM Sans Regular';
+    margin: 0px;
+}
+.main-list {
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif; */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #920113;
+    font-size: 25px;
+    padding: 5px;
+  }
+.item1{
+  float: left;
+  padding-left: 30px;
+}
+.item{
+    float: right;
+}
+  
+
+
+  
+.item a ,.item1 a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.5s, color 0.5s;
+    /* padding: 10px 20px 10px 20px; */
+    /* font-weight: 30px; */
+  }
+
+/* .item a:hover{
+    background-color: whitesmoke;
+    color: black;
+} */
+
+/* .item1{
+  font-weight: bolder;
+} */
+/* .nav-img{
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  padding: 0;
+} */
+
+.item1{
+  padding: 2px 0px 0px 2px;
+  margin-block-end: 0;
+  margin: 0;
+}
+.main-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:10px;
+}
+.left-grid{
+    grid-column: 1/2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-gap: 20px; */
+    grid-column-gap: 500px;
+}
+.right-profile-image{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.fname, .lname, .email, .resident{
+    grid-column: 1/2;
+    /* margin-right: 200px; */
+}
+.city{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.pincode{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.phone{
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+.left-grid form{
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+.blood-group{
+
+    grid-column: 2/3;
+    grid-row: 4/5;
+
+}
+.main-content{
+    padding: 30px;
+    background-image: url('/background-profile-info.svg');
+    background-size: cover;
+}
+.right-profile-image img{
+    border: 2px solid navy;
+    float: right;
+}
+.left-grid{
+    font-size: 30px;
+    background-color: #920113;
+    color: white;
+    padding: 30px;
+    width: 1200px;
+    border-radius: 25px;
+}
+#blood-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+form{
+    background-color: #ff5f5a;
+    padding: 30px;
+    border-radius: 20px;
+}
+form input{
+    background-color: rgb(224, 224, 224);
+    border-radius: 15px;
+    height: 30px;
+    border: none;
+    padding-left: 10px;
+}
+form button{
+    background-color: #920113;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+form button:hover{
+    background-color: #ff5f5a;
+}

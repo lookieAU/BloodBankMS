@@ -1,0 +1,82 @@
+doctype html 
+html(lang = "en")
+    head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport' ,content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href="/css/profile-info.css")
+    link(rel="stylesheet", href="/css/style.css")
+    title Profile Landing Page
+    body
+        header.main-header 
+                    nav.main-nav 
+                        ul.main-list    
+                            li.item1 
+                                a(href="/request-form") Request Form
+                            li.item1 
+                                a(href="/request-form",style="color:white;margin-top: 16.5px;padding: 0px;") 
+                                        svg.bi.bi-list-check(xmlns='http://www.w3.org/2000/svg', width='16', height='16', fill='currentColor', viewBox='0 0 16 16')
+                                            path(fill-rule='evenodd', d='M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z')
+                                    
+
+                            li.item 
+                                a(href="/") Log Out
+                            li.item 
+                                a(href="/",style="color: white;margin-top:13px;border-radius:50%;padding:0px 4px 0px 3px;")
+                                        svg.bi.bi-box-arrow-left(xmlns='http://www.w3.org/2000/svg', width='16', height='16', fill='currentColor', viewBox='0 0 16 16')
+                                            path(fill-rule='evenodd', d='M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z')
+                                            path(fill-rule='evenodd', d='M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z')  
+                            li.item     
+                                a(href="/profile") Profile Home
+                            li.item 
+                                a(href="/profile",style="color: white;margin-top: 15px;padding: 0px;") 
+                                        svg.bi.bi-person-circle(xmlns='http://www.w3.org/2000/svg', width='16', height='16', fill='currentColor', viewBox='0 0 16 16')
+                                            path(d='M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z')
+                                            path(fill-rule='evenodd', d='M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z')
+        main
+            .main-content 
+                .left-grid
+                    p(class="fname") 
+                        span First Name:
+                        br 
+                        span #{fname}
+                    p(class="lname") 
+                        span Last Name:
+                        br 
+                        span #{lname}
+                    p(class="email") 
+                        span Email:
+                        br 
+                        span #{email}
+                    p(class="resident") 
+                        span Residential:
+                        br 
+                        span #{resident}
+                    p(class="city") 
+                        span City:
+                        br 
+                        span #{city}
+                    p(class="pincode") 
+                        span Pincode:
+                        br 
+                        span #{pincode}
+                    p(class="phone") 
+                        span Phone:
+                        br 
+                        span #{phone}
+                    if bloodGroup == "NULL"    
+                        form(method="POST",action='/add-blood-group',style="margin-top:70px")
+                            label(for="blood-group") Blood Group:
+                            br
+                            input(name="bloodgroup",id="blood-group",type="text")
+                            br
+                            button(type="submit") Submit&Lock
+                    else 
+                        p(class="blood-group")
+                            span Blood group: 
+                            br
+                            span #{bloodGroup}
+                                                                                                                                                          
+                .right-profile-image
+                    img(src="./donor-pp.png", alt="DonorPP") 
+                

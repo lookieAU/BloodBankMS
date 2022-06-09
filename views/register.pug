@@ -54,7 +54,7 @@ html(lang = "en")
                     br
                     input(type='password' ,name='Password')
                 p(class="col2 signup")
-                    button(type='submit') sign up
+                    button(type='submit',onclick = 'alertRegister()') sign up
                 
                 p(class="col3 lname") 
                     label(for='lname') LAST NAME
@@ -77,6 +77,10 @@ html(lang = "en")
                     label(for='willing') WILLING TO DONATE(Yes/No)
                     br
                     input(type='text' ,name='willing')
+            script.
+                function alertRegister(){
+                    alert("Registration success! Please proceed to login.")
+                }
                 
                 
                 

@@ -70,5 +70,9 @@ main form p label{
     border: none;
     margin-top: 45px;
     font-size: 15px;
+    cursor: pointer;
+}
+body{
+    margin: 0px;
 }
 

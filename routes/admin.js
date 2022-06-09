@@ -8,9 +8,15 @@ router.use(express.json());
 const con = require('../util/db');
 const { CONNREFUSED } = require('dns');
 const adminRouter = require('./admin');
+const { group } = require('console');
+
+
+var requestid,userid,donorid,recipientid,donationid,statusid;
+var bloodInfoStatus = "Not Submitted";
 
 var pincodes = [];
-var fname;
+var fname,lname,email,resident,city,pincode,phone;
+var bloodGroupProfile = "NULL";
 
 router.get('/register',(req,res,next) => {
     console.log('Registration Page');
@@ -19,11 +25,46 @@ router.get('/register',(req,res,next) => {
 
 router.get('/login',(req,res,next) => {
     console.log('Login Page');
-    const fname = adminRouter.fname;
-    res.render(('login'), {name: "Incorrect"});
+    const userid = adminRouter.userid;
+    res.render(('login'), {userid: userid});
     // res.sendFile(path.join(rootDir, 'views', 'login.html'));
 });
 
+router.get('/profile',(req,res,next)=> {
+    console.log('Profile landing Page');
+    // const fname = adminRouter.fname;
+    const testRequests = ["One","Two","Three"];
+    console.log(testRequests);
+    res.render(('profile'), {requests: ["One","Two","Three"], donationID: ["One","Two","Three"], Date: ["One","Two","Three"], type: ["One","Two","Three"]});
+});
+
+router.get(('/request-form'), (req,res,next) => {
+    console.log('Request form');
+    res.render(('request'),{bloodInfoStatus: "Not submitted"});
+});
+router.get(('/profile-info'),(req,res,next) => {
+    console.log('Profile Info page');
+    // var test = "Some Value";
+    con.query(`SELECT blood_group FROM donor WHERE user_id = "${userid}"`, (err,results,fields) => {
+        if(err) throw err;
+        let result = Object.values(JSON.parse(JSON.stringify(results)));
+        bloodGroupFetched = result.map(item => item.blood_group);
+        console.log(userid);
+        console.log(result);
+        console.log(bloodGroupFetched);
+        if(bloodGroupFetched[0] != null){
+            bloodGroupProfile = bloodGroupFetched[0];
+        }
+        console.log(bloodGroupProfile);
+        res.render(('profile-info'),{fname: fname,lname: lname, email: email, resident: resident,  city: city, pincode: pincode, phone: phone, bloodGroup: bloodGroupProfile});
+    });
+    
+})
+
+// router.get(('/blood-info'), (req,res,next) => {
+//     console.log("Blood info page");
+//     res.render('bloodInfo');
+// });
 router.post('/searchpincode', (req,res,next) => {
     var pincode = req.body.pincode;
     console.log(req.body);
@@ -56,15 +97,15 @@ router.post('/searchpincode', (req,res,next) => {
     
     });
 
-
-
 });
 
 router.post('/adduser',(req,res,next) => {
     console.log(req.body);
-    var userid = nanoid(10);
-    var donorid = nanoid(10);
-    var recipientid = nanoid(10);
+    userid = nanoid(10);
+    donorid = nanoid(10);
+    recipientid = nanoid(10);
+
+    var checkregister = "NULL";
 
     var fname = req.body.fname;
     var lname = req.body.lname;
@@ -83,7 +124,7 @@ router.post('/adduser',(req,res,next) => {
     var values =[[userid,fname,lname,email,resident,city,state,pincode,phone,id_number,will,passkey]];
 
     if(will == 'Yes' || will == "yes" || will == "YES" ){
-        var sql_additional = "INSERT INTO donor VALUES ?";
+        var sql_additional = "INSERT INTO donor(donor_id,user_id,dob,eligibility) VALUES ?";
         var values_additional =[[donorid, userid, dob, 'Yes']];
     }
     else{
@@ -98,7 +139,7 @@ router.post('/adduser',(req,res,next) => {
 
         con.query(sql_additional,[values_additional],(err) => {
             if(err) throw err;
-            console.log("values inserted in Donor/Recipient")
+            console.log("values inserted in Donor/Recipient");
         });
     });
 
@@ -108,21 +149,97 @@ router.post('/adduser',(req,res,next) => {
 router.post('/loginuser', (req,res,next) => {
     var username = req.body.Username;
     var passkey = req.body.Password;
+    console.log(username,passkey);
+
 
 
     con.query(`SELECT * FROM registered_user WHERE email =  "${username}" AND passkey = "${passkey}"`, (err,result,fields) => {
+        // let fname = "NULL";
         if(err) throw err;
+        console.log(result);
         let newResult = Object.values(JSON.parse(JSON.stringify(result)));
-        let fname = newResult.map(item => item.fname);
-        console.log(newResult);
-        res.send(`<h2>Welcome ${fname}</h2>`);
+        if (newResult.length == 0){
+            userid = 'NULL';
+            exports.userid = userid;
+            res.redirect('/login');
+            
+        }
+        else{
+            userid = newResult[0].user_id;
+            fname = newResult[0].fname;
+            lname = newResult[0].lname;
+            email = newResult[0].email;
+            resident = newResult[0].residential;
+            city = newResult[0].city;
+            pincode = newResult[0].pincode;
+            phone = newResult[0].phone;
+            console.log(userid);
+            console.log(newResult);
+            bloodGroupProfile = "NULL";
+            res.redirect('/profile');
+        }
 
-        exports.fname = fname;
+        
     });
 
-    res.redirect('/login');
+    // res.redirect('/login');
 
     
+
+});
+
+router.post('/request-form', (req,res,next) => {
+    var requestDate = req.body.requestdate;
+    var proofOfRequest = 'Tobefilledlater';
+    donationid = nanoid(10);
+    statusid = nanoid(10);
+    var requestStatus = 'On';
+
+    var sql = `INSERT INTO request_form (donation_id,request_date,request_id,user_id,request_status) VALUES ?`;
+    var values = [[donationid,requestDate,requestid,userid,requestStatus]];
+    con.query(sql,[values],(err) => {
+        if(err) throw err;
+        console.log('Values inserted into Request form table');
+        // var sql_additional_2 = `INSERT INTO donation_status (donation_id,status_id,user_id) VALUES ?`;
+        // var values_additional_2 = [[donationid,statusid,userid]];
+
+        // con.query(sql_additional_2,[values_additional_2],(err) => {
+        //     if (err) throw err;
+        //     console.log('Values inserted into Donation status table');
+        // });
+        // // var requestStatus = "Added";
+        bloodInfoStatus = "Not submitted";
+        res.redirect('/profile');
+    });
+
+});
+
+router.post('/blood-info', (req,res,next) => {
+    var bloodType = req.body.bloodType;
+    var hospitalName = req.body.hospitalName;
+    var hospitalContact = req.body.hospitalContact;
+    var pincode = req.body.pincode;
+    var bloodPlatelets = req.body.bloodPlatelets;
+
+    requestid = nanoid(10);
+
+    var sql = `INSERT INTO blood_info VALUES ?`;
+    var values = [[requestid,bloodType,hospitalContact,hospitalName,pincode,bloodPlatelets]];
+    con.query(sql,[values],(err) => {
+        if(err) throw err;
+        console.log('Values inserted into Blood Info table');
+        res.render(('request'), {bloodInfoStatus: "Submitted"});
+    });
+});
+router.post('/add-blood-group', (req,res,next) => {
+    bloodGroupProfile = req.body.bloodgroup;
+    var sql = `UPDATE donor SET blood_group = "${bloodGroupProfile}" WHERE user_id = "${userid}"`;
+    // var values =[[bloodGroupProfile]];
+    con.query(sql,(err) => {
+        if(err) throw err;
+        console.log("Blood Group updated");
+        res.redirect('/profile-info');
+    });
 
 });
 
@@ -130,4 +247,4 @@ exports.router = router;
 
 exports.pincodes = pincodes;
 
-exports.fname = fname;
+exports.userid = userid;
