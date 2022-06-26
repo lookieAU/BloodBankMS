@@ -9,7 +9,7 @@ const adminRouter = require('./admin');
 router.get('/',(req,res,next) => {
     console.log('Main Page');
     const pincodes = adminRouter.pincodes;
-    console.log(pincodes);
+    console.log(typeof(pincodes));
     res.render('index', {pins: pincodes, tableTitle: "Available Pincodes"});
     // res.status(200).send('Hey the response is coming');
 });

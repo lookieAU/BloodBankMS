@@ -17,6 +17,7 @@ var bloodInfoStatus = "Not Submitted";
 var pincodes = [];
 var fname,lname,email,resident,city,pincode,phone;
 var bloodGroupProfile = "NULL";
+var req_arr = [];
 
 router.get('/register',(req,res,next) => {
     console.log('Registration Page');
@@ -32,11 +33,96 @@ router.get('/login',(req,res,next) => {
 
 router.get('/profile',(req,res,next)=> {
     console.log('Profile landing Page');
+    var pin_result,match_pins = [],requests;
+
     // const fname = adminRouter.fname;
-    const testRequests = ["One","Two","Three"];
-    console.log(testRequests);
-    res.render(('profile'), {requests: ["One","Two","Three"], donationID: ["One","Two","Three"], Date: ["One","Two","Three"], type: ["One","Two","Three"]});
+    con.query(`SELECT latitude FROM pincode_list WHERE pincode = "${pincode}"`, (err,results,fields) => {
+        if(err) throw err;
+        let rec = Object.values(JSON.parse(JSON.stringify(results)));
+        let latitude = rec.map(item => item.latitude);
+        console.log(latitude);
+
+        con.query(`SELECT longitude FROM pincode_list WHERE pincode = "${pincode}"`, (err,results,fields) => {
+            if(err) throw err;
+            let rec = Object.values(JSON.parse(JSON.stringify(results)));
+            let longitude = rec.map(item => item.longitude);
+            console.log(longitude);
+
+            con.query(`SELECT distinct(pincode) FROM pincode_list WHERE (3958*3.1415926*sqrt((latitude-"${latitude}")*(latitude-${latitude}) + cos(latitude/57.29578)*cos("${latitude}"/57.29578)* (longitude-"${longitude}")*(longitude-"${longitude}"))/180) <= 3.1086;`,(err,results,fields) => {
+                if(err) throw err;
+                let rec = Object.values(JSON.parse(JSON.stringify(results)));
+                pincodes = rec.map(item => item.pincode);
+
+            //  res.status(200).send({data : pincodes}); 
+                console.log(pincodes);
+                con.query(`SELECT distinct(pincode) FROM blood_info`, (err,results,fields) => {
+                    if(err) throw err;
+                    let rec = Object.values(JSON.parse(JSON.stringify(results)));
+                    pin_result = rec.map(item => item.pincode);
+                    let a = pincodes.length;
+                    let b = pin_result.length;
+                    for(let i=0;i<a;i++){
+                        let c=0;
+                        for(let j=0;j<b;j++){
+                            if(pincodes[i] == pin_result[j]){
+                                c++;
+                            }
+
+                        }
+                        if(c>0){
+                            match_pins = match_pins + pincodes[i];
+                            c=0;
+                        }
+                    }
+                    con.query(`SELECT * FROM blood_info WHERE pincode="600064"`,(err,results,fields) => {
+                        if(err) throw err;
+                        let rec = Object.values(JSON.parse(JSON.stringify(results)));
+                        requests = rec.map(item => item.request_id);
+                        var hospital_contact = rec.map(item => item.hospital_contact);
+                        var hospital_name = rec.map(item => item.hospital_name);
+
+                        req_arr = requests;
+                        // console.log(requests.length);
+                        // console.log(requests[0]);
+                        console.log(req_arr.length);
+                        console.log(match_pins);
+                        var l = requests.length;
+                        // for(var i=0;i<l;i++){
+                        //     req_arr.append(requests[i]);
+                        // }
+                        // console.log(typeof(req_arr));
+                        res.render(('profile'), {requests: req_arr,hosp_contact: hospital_contact,hosp_name: hospital_name, donationID: ["One","Two","Three"], Date: ["One","Two","Three"], type: ["One","Two","Three"]});
+                    });
+
+                });
+                // for (k in pincodes){
+                //     con.query(`SELECT distinct(pincode) FROM blood_info WHERE pincode = "${k}"`,(err,results,fields) => {
+                //         if(err) throw err;
+                //         let rec = Object.values(JSON.parse(JSON.stringify(results)));
+                //         let matched_pincodes = rec.map(item => item.pincode);
+                //     });
+                // }
+
+            });
+        });
+
+
+    
+    });
+    
+    // console.log(testRequests);
+    
 });
+router.get('/confirm-request-0', (req,res,next) => {
+    var request_fk = req_arr[0];
+    con.query(`SELECT donation_id FROM request_form WHERE request_id = "${request_fk}"`, (err,results,fields) => {
+        if(err) throw err;
+        let rec = Object.values(JSON.parse(JSON.stringify(results)));
+        var donation_fk = rec.map(item => item.donation_id);
+    });
+});
+
+
 
 router.get(('/request-form'), (req,res,next) => {
     console.log('Request form');
@@ -65,6 +151,15 @@ router.get(('/profile-info'),(req,res,next) => {
 //     console.log("Blood info page");
 //     res.render('bloodInfo');
 // });
+
+
+
+
+
+
+
+
+
 router.post('/searchpincode', (req,res,next) => {
     var pincode = req.body.pincode;
     console.log(req.body);
