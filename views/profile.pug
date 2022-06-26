@@ -83,14 +83,14 @@ html(lang = "en")
 
                                     p Name of Recipient: #{request}
 
-                                    p Hospital Name: #{request}
+                                    p Hospital Name: #{hosp_name[count]}
 
-                                    p Hospital Contact: #{request}
+                                    p Hospital Contact: #{hosp_contact[count]}
 
-                                    p(style="margin-bottom: 70px") Attached Document: #{request}
+                                    p(style="margin-bottom: 70px") Attached Document: Proof
 
                                     p.confirm-p
-                                        a(href='/confirm-request',class="confirm-request",style="padding: 5px 15px 5px 15px;text-decoration: none") Confirm
+                                        a(href='/confirm-request-#{count}',class="confirm-request",style="padding: 5px 15px 5px 15px;text-decoration: none") Confirm
                                     - count = count +1
                                 if count == 3
                                     br
